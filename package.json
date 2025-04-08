@@ -1,6 +1,6 @@
 {
   "name": "titanium-animate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A lightweight, zero-dependency JavaScript animation framework with flexible easing, direction, and callback support.",
   "main": "dist/titanium-animate.umd.js",
   "module": "dist/titanium-animate.esm.js",
