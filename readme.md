@@ -17,7 +17,8 @@ const animation = Animate(document.querySelector(".box"), {
   duration: 1000,
   easing: Easing.EaseInOut,
   direction: Direction.Normal,
-  fill: Fill.Forwards
+  fill: Fill.Forwards,
+  iterations: 1 // optional
 })
   .from({ left: "0px" })
   .to({ left: "300px" })
@@ -33,7 +34,7 @@ handle.cancel(); // Cancel mid-animation
 
 ### Status Updates
 ```js
-Animate(element, { duration: 1500 })
+Animate(element, { duration: 1500, iterations: Infinity })
   .from({ top: "0px" })
   .to({ top: "300px" })
   .onStatus((status) => {
@@ -48,27 +49,50 @@ Animate(element, { duration: 1500 })
 
 ### `Animate(element, options)`
 
-| Option     | Type     | Default     | Description                          |
-|------------|----------|-------------|--------------------------------------|
-| `duration` | Number   | `1000`      | Duration in ms                       |
-| `easing`   | String   | `linear`    | Use from `Easing` constants          |
-| `direction`| String   | `normal`    | Use from `Direction` constants       |
-| `fill`     | String   | `none`      | Use from `Fill` constants            |
-| `delay`    | Number   | `0`         | Optional delay in ms                 |
+| Option       | Type     | Default     | Description                          |
+|--------------|----------|-------------|--------------------------------------|
+| `duration`   | Number   | `1000`      | Duration in ms                       |
+| `easing`     | String   | `linear`    | Use from `Easing` constants          |
+| `direction`  | String   | `normal`    | Use from `Direction` constants       |
+| `fill`       | String   | `none`      | Use from `Fill` constants            |
+| `delay`      | Number   | `0`         | Optional delay in ms                 |
+| `iterations` | Number   | `1`         | Number of repeats (or `Infinity`)    |
 
 ---
 
 ## 🧪 Built-in Mappers
 
-| Property   | Behavior               |
-|------------|------------------------|
-| `left`     | Translates in X axis   |
-| `top`      | Translates in Y axis   |
-| `grayscale`| CSS Filter             |
+Titanium Animate includes built-in shorthand properties for `transform` and `filter`-based animations:
 
-You can also animate standard properties like `opacity`, `backgroundColor`, `transform`, etc.
+### Transform-based properties
+| Property         | Output                        |
+|------------------|-------------------------------|
+| `left`           | `translateX(...)`             |
+| `top`            | `translateY(...)`             |
+| `translateZ`     | `translateZ(...)`             |
+| `scale`          | `scale(...)`                  |
+| `scaleX`         | `scaleX(...)`                 |
+| `scaleY`         | `scaleY(...)`                 |
+| `scaleZ`         | `scaleZ(...)`                 |
+| `rotate`         | `rotate(...)`                 |
+| `rotateX`        | `rotateX(...)`                |
+| `rotateY`        | `rotateY(...)`                |
+| `rotateZ`        | `rotateZ(...)`                |
+| `skewX`          | `skewX(...)`                  |
+| `skewY`          | `skewY(...)`                  |
+| `perspective`    | `perspective(...)`            |
 
+### Filter-based properties
+| Property         | Output                        |
+|------------------|-------------------------------|
+| `grayscale`      | `grayscale(...)`              |
+| `blur`           | `blur(...)`                   |
+| `brightness`     | `brightness(...)`             |
+| `contrast`       | `contrast(...)`               |
+| `hueRotate`      | `hue-rotate(...)`             |
+| `invert`         | `invert(...)`                 |
+| `opacity`        | `opacity(...)`                |
+| `saturate`       | `saturate(...)`               |
+| `sepia`          | `sepia(...)`                  |
 
-## License
-
-This framework is released under the [MIT License](LICENSE).
+You can also animate standard properties like `backgroundColor`, `color`, or direct `transform` values.

@@ -81,7 +81,34 @@ export const Animate = function (element, options) {
   const typeMapper = {
     left: { type: "transform", action: (value) => `translateX(${value})` },
     top: { type: "transform", action: (value) => `translateY(${value})` },
+    scale: { type: "transform", action: (value) => `scale(${value})` },
+    scaleX: { type: "transform", action: (value) => `scaleX(${value})` },
+    scaleY: { type: "transform", action: (value) => `scaleY(${value})` },
+    rotate: { type: "transform", action: (value) => `rotate(${value})` },
+    rotateX: { type: "transform", action: (value) => `rotateX(${value})` },
+    rotateY: { type: "transform", action: (value) => `rotateY(${value})` },
+    skewX: { type: "transform", action: (value) => `skewX(${value})` },
+    skewY: { type: "transform", action: (value) => `skewY(${value})` },
+    perspective: {
+      type: "transform",
+      action: (value) => `perspective(${value})`,
+    },
+    translateZ: {
+      type: "transform",
+      action: (value) => `translateZ(${value})`,
+    },
+    scaleZ: { type: "transform", action: (value) => `scaleZ(${value})` },
+    rotateZ: { type: "transform", action: (value) => `rotateZ(${value})` },
+    // Filter
     grayscale: { type: "filter", action: (value) => `grayscale(${value})` },
+    blur: { type: "filter", action: (value) => `blur(${value})` },
+    brightness: { type: "filter", action: (value) => `brightness(${value})` },
+    contrast: { type: "filter", action: (value) => `contrast(${value})` },
+    hueRotate: { type: "filter", action: (value) => `hue-rotate(${value})` },
+    invert: { type: "filter", action: (value) => `invert(${value})` },
+    opacity: { type: "filter", action: (value) => `opacity(${value})` },
+    saturate: { type: "filter", action: (value) => `saturate(${value})` },
+    sepia: { type: "filter", action: (value) => `sepia(${value})` },
   };
 
   const typeParser = function (whereObject, key) {
@@ -120,7 +147,7 @@ export const Animate = function (element, options) {
       const fromObject = render(using.fromObject, {});
       const toObject = render(using.toObject, {});
 
-      const { duration, easing, fill, direction, delay } = options;
+      const { duration, easing, fill, direction, delay, iterations } = options;
 
       using.currentAnimate = element.animate([fromObject, toObject], {
         duration,
@@ -128,6 +155,7 @@ export const Animate = function (element, options) {
         fill,
         direction,
         delay,
+        iterations, // 0,1,2 or Infinite
       });
 
       onCompletedAction();
