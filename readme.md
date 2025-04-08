@@ -1,19 +1,74 @@
-# Titanium Animate
+## Titanium Animate
 
-**Titanium Animate** is a lightweight JavaScript framework designed to provide an easy way to create smooth and customizable animations on DOM elements. It allows you to animate elements with various customizable properties such as `easing`, `direction`, `fill`, and more. The framework supports a rich set of functionalities including animation cancellation, status tracking, and custom callback handling.
+**Titanium Animate** is a lightweight, zero-dependency JavaScript animation framework designed to simplify the Web Animations API with an intuitive API, flexible easing, directional control, and lifecycle callbacks.
 
-## Features
+---
 
-- **Flexible Animation Control**: Easily control animation's start, stop, and pause states.
-- **Custom Easing**: Use predefined easing methods or define your own cubic bezier curves.
-- **Animation Status**: Track the animation status in real-time (running, paused, completed).
-- **Callbacks**: Execute functions when the animation is completed or at each animation step.
-- **Multiple CSS Properties**: Animate various properties like `scale`, `opacity`, `transform`, and more.
-- **Ease of Use**: Simple API for animating DOM elements.
+## ✨ Usage
 
-## Installation
+### Import
+```js
+import { Animate, Easing, Direction, Fill } from "titanium-animate";
+```
 
-To install **Titanium Animate** as an NPM package:
+### Basic Animation
+```js
+const animation = Animate(document.querySelector(".box"), {
+  duration: 1000,
+  easing: Easing.EaseInOut,
+  direction: Direction.Normal,
+  fill: Fill.Forwards
+})
+  .from({ left: "0px" })
+  .to({ left: "300px" })
+  .onCompleted(() => console.log("Animation Done"))
+  .start();
+```
 
-```bash
-npm install titanium-animate
+### Cancel Anytime
+```js
+const handle = animation.start();
+handle.cancel(); // Cancel mid-animation
+```
+
+### Status Updates
+```js
+Animate(element, { duration: 1500 })
+  .from({ top: "0px" })
+  .to({ top: "300px" })
+  .onStatus((status) => {
+    console.log(status.currentTime, status.statusType);
+  }, 100)
+  .start();
+```
+
+---
+
+## 🧩 API
+
+### `Animate(element, options)`
+
+| Option     | Type     | Default     | Description                          |
+|------------|----------|-------------|--------------------------------------|
+| `duration` | Number   | `1000`      | Duration in ms                       |
+| `easing`   | String   | `linear`    | Use from `Easing` constants          |
+| `direction`| String   | `normal`    | Use from `Direction` constants       |
+| `fill`     | String   | `none`      | Use from `Fill` constants            |
+| `delay`    | Number   | `0`         | Optional delay in ms                 |
+
+---
+
+## 🧪 Built-in Mappers
+
+| Property   | Behavior               |
+|------------|------------------------|
+| `left`     | Translates in X axis   |
+| `top`      | Translates in Y axis   |
+| `grayscale`| CSS Filter             |
+
+You can also animate standard properties like `opacity`, `backgroundColor`, `transform`, etc.
+
+
+## License
+
+This framework is released under the [MIT License](LICENSE).

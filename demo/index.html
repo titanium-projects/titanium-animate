@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Titanium Animate Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #f7f8fa, #dde6f9);
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background: #4a90e2;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #4a90e2;
+      color: white;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #3a78c2;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Titanium Animate Demo</h1>
+
+  <div class="container">
+    <div class="box" id="box"></div>
+
+    <div class="button-group">
+      <button onclick="moveRight()">Move Right</button>
+      <button onclick="moveDown()">Move Down</button>
+      <button onclick="fadeOut()">Fade Out</button>
+      <button onclick="scaleUp()">Scale Up</button>
+      <button onclick="grayscaleEffect()">Grayscale</button>
+      <button onclick="reset()">Reset</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { Animate, Easing, Direction, Fill } from '../dist/titanium-animate.esm.js';
+
+    const box = document.getElementById("box");
+    let active;
+
+    const reset = () => {
+      active?.cancel();
+      box.style.transform = "none";
+      box.style.opacity = 1;
+      box.style.filter = "none";
+    };
+
+    const moveRight = () => {
+      reset();
+      active = Animate(box, {
+        duration: 1000,
+        easing: Easing.EaseOut,
+        fill: Fill.Forwards,
+      })
+        .from({ left: "0px" })
+        .to({ left: "300px" })
+        .start();
+    };
+
+    const moveDown = () => {
+      reset();
+      active = Animate(box, {
+        duration: 1000,
+        easing: Easing.EaseInOut,
+        fill: Fill.Forwards,
+        direction: Direction.Alternate,
+      })
+        .from({ top: "0px" })
+        .to({ top: "200px" })
+        .start();
+    };
+
+    const fadeOut = () => {
+      reset();
+      active = Animate(box, {
+        duration: 800,
+        easing: Easing.Linear,
+        fill: Fill.Forwards,
+      })
+        .from({ opacity: 1 })
+        .to({ opacity: 0 })
+        .start();
+    };
+
+    const scaleUp = () => {
+      reset();
+      active = Animate(box, {
+        duration: 1000,
+        easing: Easing.CubicBezier(0.68, -0.55, 0.27, 1.55),
+        fill: Fill.Forwards,
+      })
+        .from({ transform: "scale(1)" })
+        .to({ transform: "scale(1.5)" })
+        .start();
+    };
+
+    const grayscaleEffect = () => {
+      reset();
+      active = Animate(box, {
+        duration: 1200,
+        easing: Easing.Ease,
+        fill: Fill.Forwards,
+      })
+        .from({ grayscale: "0%" })
+        .to({ grayscale: "100%" })
+        .start();
+    };
+
+    // modülün sonunda
+    window.moveRight = moveRight;
+    window.moveDown = moveDown;
+    window.fadeOut = fadeOut;
+    window.scaleUp = scaleUp;
+    window.grayscaleEffect = grayscaleEffect;
+    window.reset = reset;
+  </script>
+</body>
+
+</html>

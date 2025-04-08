@@ -1,33 +1,35 @@
 {
   "name": "titanium-animate",
   "version": "1.0.0",
-  "description": "A lightweight JavaScript animation framework.",
-  "main": "dist/titanium-animate.js",
+  "description": "A lightweight, zero-dependency JavaScript animation framework with flexible easing, direction, and callback support.",
+  "main": "dist/titanium-animate.umd.js",
   "module": "dist/titanium-animate.esm.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "animation",
+    "javascript",
+    "web animation",
+    "easing",
+    "timeline",
+    "titanium",
+    "titanium-animate"
+  ],
   "author": "Titanium Projects",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/titanium-projects/titanium-animate.git"
   },
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
-    "test": "echo \"No tests specified\" && exit 0"
+  "bugs": {
+    "url": "https://github.com/titanium-projects/titanium-animate/issues"
   },
-  "keywords": [
-    "animation",
-    "javascript",
-    "framework",
-    "DOM"
-  ],
-  "dependencies": {},
+  "homepage": "https://github.com/titanium-projects/titanium-animate#readme",
   "devDependencies": {
-    "rollup": "^2.0.0",
+    "rollup": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2"
-  },
-  "peerDependencies": {},
-  "publishConfig": {
-    "access": "public"
   }
 }
