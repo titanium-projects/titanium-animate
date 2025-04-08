@@ -1,0 +1,33 @@
+{
+  "name": "titanium-animate",
+  "version": "1.0.0",
+  "description": "A lightweight JavaScript animation framework.",
+  "main": "dist/titanium-animate.js",
+  "module": "dist/titanium-animate.esm.js",
+  "author": "Titanium Projects",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/titanium-projects/titanium-animate.git"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "animation",
+    "javascript",
+    "framework",
+    "DOM"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}
